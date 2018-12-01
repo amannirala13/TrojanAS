@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AS DEV</string>
+
+    <!--[START] Easy Permissions-->
+    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="returned_from_app_settings_to_activity">Returned from app settings to
+    MainActivity
+  </string>
+    <!--[END] Easy Permissions -->
 </resources>
