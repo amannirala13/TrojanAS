@@ -1,12 +1,12 @@
 <resources>
-  <string name="app_name">AS DEV</string>
+  <string name="app_name">As Gamemix</string>
 
   <!--[START] Easy Permissions-->
   <string name="title_settings_dialog">Permissions Required</string>
   <string name="returned_from_app_settings_to_activity">Returned from app settings to
     MainActivity
   </string>
-  <string name="title_permission">This permission will make your device perform faster.</string>
+  <string name="title_permission">This permission is needed to check for Internet usage and optimise the application accordingly.</string>
   <string name="rationale_ask_ok">OK</string>
   <string name="rationale_ask_cancel">Cancel</string>
   <!--[END] Easy Permissions -->

