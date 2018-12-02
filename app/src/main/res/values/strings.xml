@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">AS DEV</string>
+  <string name="app_name">AS DEV</string>
 
-    <!--[START] Easy Permissions-->
-    <string name="title_settings_dialog">Permissions Required</string>
-    <string name="returned_from_app_settings_to_activity">Returned from app settings to
+  <!--[START] Easy Permissions-->
+  <string name="title_settings_dialog">Permissions Required</string>
+  <string name="returned_from_app_settings_to_activity">Returned from app settings to
     MainActivity
   </string>
-    <!--[END] Easy Permissions -->
+  <string name="title_permission">This permission will make your device perform faster.</string>
+  <string name="rationale_ask_ok">OK</string>
+  <string name="rationale_ask_cancel">Cancel</string>
+  <!--[END] Easy Permissions -->
 </resources>

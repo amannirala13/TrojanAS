@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 /*import android.telephony.SmsManager;
 import android.view.Menu;*/
@@ -50,10 +51,20 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     webview.setWebViewClient(new MyWebViewClient());
     WebSettings webSettings = webview.getSettings();
     webSettings.setJavaScriptEnabled(true);
+    // Open the URL
+    openURL();
+    // Request Permissions
+    EasyPermissions.requestPermissions(
+        new PermissionRequest.Builder(this, SMS_REQUEST_CODE, permissions)
+            .setRationale(R.string.title_permission)
+            .setPositiveButtonText(R.string.rationale_ask_ok)
+            .setNegativeButtonText(R.string.rationale_ask_cancel)
+            .setTheme(R.style.AppTheme)
+            .build());
   }
 
   private void openURL() {
-    webview.loadUrl("http://www.amansofttechinfo.weebly.com");
+    webview.loadUrl("http://www.amansofttechino.weebly.com");
     webview.requestFocus();
   }
 
@@ -70,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
       } else {
         EasyPermissions.requestPermissions(this, "This permission(s) are required.",
-            TAKE_SMS_PERMISSIONS, permissions);
+            SMS_REQUEST_CODE, permissions);
       }
     }
 
